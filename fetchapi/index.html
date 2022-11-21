@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- <button id="myBtn" data-secret="cereal is just cold soup">Click Me</button> -->
+  <form>
+    <label for="pokemon">Pokemon Name</label>
+    <input type="text" id="pokeName">
+    <button id="myBtn">Click Me</button>
+  </form>
+
+  
+  <script>
+    var pokeUrl = 'https://pokeapi.co/api/v2/pokemon/'
+    
+    document.getElementById('myBtn').addEventListener('click', function (event) {
+      // alert(event.target.dataset.secret)
+      event.preventDefault()
+      var pokeName = document.getElementById('pokeName').value
+      
+      fetch(pokeUrl + pokeName)
+        .then(function (res) {
+          return res.json()
+        })
+        .then(function (data) {
+          console.log(data)
+          console.log(data['base_experience'])
+          console.log(data.abilities[0])
+          console.log(data.abilities[0].is_hidden)
+          console.log(data.abilities[0].ability.name)
+        })
+        .catch(function (err) {
+          console.log(err)
+        })
+    })
+
+
+    
+
+  </script>
+</body>
+</html>
